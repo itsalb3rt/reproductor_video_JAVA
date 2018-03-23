@@ -13,6 +13,7 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.geometry.*; //Para tratar la alinacion de elementos
 
 public class ReproductorVideo extends Application
 {
@@ -28,7 +29,7 @@ public class ReproductorVideo extends Application
 		Buscando el archivo a repdoducir, recomendable que este en la misma 
 		carpera del video o en un subdirectorio de esta carpeta por ejemplo /videos
 		*/
-		URL mediaUrl = getClass().getResource("nombre_archivo.mp4"); //Nombre del video
+		URL mediaUrl = getClass().getResource("nombre_video.mp4"); //Nombre del video
 		String mediaStringUrl = mediaUrl.toExternalForm();
 		
 		// creando el medio
@@ -90,9 +91,20 @@ public class ReproductorVideo extends Application
 		
 		// Creando un HBOX
 		HBox controlBox = new HBox(5, playButton, stopButton);
+		//Estableciendo el tamano de los botones
+		playButton.setPrefWidth(100); //Ancho
+		playButton.setPrefHeight(50); //alto
+		stopButton.setPrefWidth(100);
+		stopButton.setPrefHeight(50);
+		//Centrando los botones
+		controlBox.setAlignment(Pos.CENTER);
+
+		HBox.setMargin(playButton,new Insets(10));
 		
 		// creando la caja del video
 		VBox root = new VBox(5,mediaView,controlBox);
+		//Alineando el video
+		root.setAlignment(Pos.CENTER);
 		
 		// Estas son las propiedades de la caja que encierra la pantalla del video
 		root.setStyle("-fx-padding: 20;" + //Expancion del contenedor
